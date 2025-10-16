@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #000000, #1a1a1a);
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      overflow: hidden;
+    }
+    .glow {
+      font-size: 3em;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99, 0 0 80px #00ff99;
+      animation: glowPulse 2s ease-in-out infinite;
+    }
+    @keyframes glowPulse {
+      0%, 100% { text-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99, 0 0 80px #00ff99; }
+      50% { text-shadow: 0 0 5px #00ff99, 0 0 20px #00ff99, 0 0 40px #00ff99; }
+    }
+    p {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #ccc;
+      letter-spacing: 1px;
+    }
+    .countdown {
+      margin-top: 40px;
+      font-size: 1.5em;
+      font-weight: 500;
+      display: flex;
+      gap: 20px;
+    }
+    .countdown div {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      backdrop-filter: blur(8px);
+      min-width: 80px;
+    }
+    .countdown span {
+      display: block;
+      font-size: 0.8em;
+      color: #aaa;
+      margin-top: 8px;
+    }
+    @media(max-width: 600px) {
+      .glow { font-size: 2.2em; }
+      .countdown div { min-width: 65px; padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="glow">Coming Soon</h1>
+  <p>We’re preparing something amazing for you. Stay tuned!</p>
+
+  <div class="countdown" id="countdown">
+    <div><b id="days">00</b><span>Days</span></div>
+    <div><b id="hours">00</b><span>Hours</span></div>
+    <div><b id="minutes">00</b><span>Minutes</span></div>
+    <div><b id="seconds">00</b><span>Seconds</span></div>
+  </div>
+
+  <script>
+    // Countdown timer (set your date)
+    const targetDate = new Date("2025-12-31T00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      if (diff <= 0) return;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
