@@ -1,109 +1,227 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coming Soon</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hanging Board — Opening Soon</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --bg:#0c0c0f;
+      --rope:#8b6b35;
+      --board-bg:linear-gradient(180deg,#3b2e23 0%, #2a2118 100%);
+      --accent:#ffd166;
+      --text:#fff;
+      --shadow: rgba(2,6,23,0.6);
     }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #000000, #1a1a1a);
-      color: #fff;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      overflow: hidden;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:radial-gradient(circle at 30% 20%, #101018 0%, #08080a 60%);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color:var(--text);
+      padding:40px;
     }
-    .glow {
-      font-size: 3em;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #fff;
-      text-transform: uppercase;
-      text-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99, 0 0 80px #00ff99;
-      animation: glowPulse 2s ease-in-out infinite;
+
+    .scene{
+      width:520px;
+      max-width:92vw;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:18px;
     }
-    @keyframes glowPulse {
-      0%, 100% { text-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99, 0 0 80px #00ff99; }
-      50% { text-shadow: 0 0 5px #00ff99, 0 0 20px #00ff99, 0 0 40px #00ff99; }
+
+    /* hanging bar */
+    .hanger-rail{
+      width:220px;
+      height:6px;
+      background:linear-gradient(90deg,#444 0%, #222 100%);
+      border-radius:6px;
+      position:relative;
+      box-shadow:0 8px 18px rgba(0,0,0,0.6);
     }
-    p {
-      margin-top: 20px;
-      font-size: 1.2em;
-      color: #ccc;
-      letter-spacing: 1px;
+
+    /* ropes */
+    .rope{
+      width:8px;
+      height:120px;
+      background:linear-gradient(180deg,#b58e5a 0%, #8b6b35 100%);
+      border-radius:8px;
+      position:absolute;
+      top:6px;
+      transform-origin:top center;
+      box-shadow:inset 0 -6px rgba(0,0,0,0.25);
     }
-    .countdown {
-      margin-top: 40px;
-      font-size: 1.5em;
-      font-weight: 500;
-      display: flex;
-      gap: 20px;
+    .rope.left{ left:48px; }
+    .rope.right{ right:48px; }
+
+    /* actual board */
+    .board-wrap{
+      perspective:1000px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin-top: -10px; /* pull close to ropes */
     }
-    .countdown div {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 20px;
-      border-radius: 10px;
-      backdrop-filter: blur(8px);
-      min-width: 80px;
+
+    .board{
+      width:380px;
+      max-width:86vw;
+      height:140px;
+      border-radius:10px;
+      background:var(--board-bg);
+      box-shadow: 0 22px 40px var(--shadow), inset 0 -8px rgba(0,0,0,0.3);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      transform-origin: top center;
+      animation: swing 3.8s ease-in-out infinite;
+      border: 2px solid rgba(0,0,0,0.35);
     }
-    .countdown span {
-      display: block;
-      font-size: 0.8em;
-      color: #aaa;
-      margin-top: 8px;
+
+    /* wood grain decorative lines */
+    .board::before{
+      content:"";
+      position:absolute;inset:0;border-radius:10px;
+      background-image: linear-gradient(90deg, rgba(255,255,255,0.02) 0.5px, transparent 0.5px);
+      background-size: 6px 6px;
+      mix-blend-mode:overlay;
+      opacity:0.6;
     }
-    @media(max-width: 600px) {
-      .glow { font-size: 2.2em; }
-      .countdown div { min-width: 65px; padding: 15px; }
+
+    @keyframes swing{
+      0% { transform: rotate(-6deg); }
+      25% { transform: rotate(4deg); }
+      50% { transform: rotate(-3deg); }
+      75% { transform: rotate(5deg); }
+      100% { transform: rotate(-6deg); }
     }
+
+    /* painted text */
+    .board .text{
+      font-weight:800;
+      letter-spacing:6px;
+      font-size:32px;
+      color:var(--accent);
+      text-transform:uppercase;
+      text-shadow: 0 2px 0 rgba(0,0,0,0.6), 0 0 22px rgba(255,209,102,0.05);
+      transform: translateZ(20px);
+      pointer-events:none;
+    }
+
+    /* shadow on ground to match swing */
+    .shadow{
+      width:420px;max-width:92vw;height:40px;border-radius:50%;
+      background:radial-gradient(closest-side, rgba(0,0,0,0.5), rgba(0,0,0,0.12) 40%, transparent 70%);
+      filter: blur(8px);
+      margin-top: 24px;
+      transform-origin:center;
+      animation: shadowShift 3.8s ease-in-out infinite;
+    }
+    @keyframes shadowShift{
+      0%{ transform: translateX(-12px) scaleX(1.06) }
+      25%{ transform: translateX(6px) scaleX(0.98) }
+      50%{ transform: translateX(-4px) scaleX(1.02) }
+      75%{ transform: translateX(8px) scaleX(0.96) }
+      100%{ transform: translateX(-12px) scaleX(1.06) }
+    }
+
+    /* small tag under board */
+    .tag{
+      margin-top:6px;font-size:12px;color:#cfcfcf;opacity:0.9
+    }
+
+    /* responsive tweaks */
+    @media (max-width:420px){
+      .board{height:110px}
+      .board .text{font-size:22px;letter-spacing:4px}
+      .rope{height:96px}
+    }
+
+.hero-content {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content .logo {
+  max-width: 180px;
+  width: 35%;
+  height: auto;
+  display: block;
+}
+
+
   </style>
+
+
 </head>
 <body>
-  <h1 class="glow">Coming Soon</h1>
-  <p>We’re preparing something amazing for you. Stay tuned!</p>
 
-  <div class="countdown" id="countdown">
-    <div><b id="days">00</b><span>Days</span></div>
-    <div><b id="hours">00</b><span>Hours</span></div>
-    <div><b id="minutes">00</b><span>Minutes</span></div>
-    <div><b id="seconds">00</b><span>Seconds</span></div>
+<div class="scene" role="img" aria-label="Hanging shop board saying Opening Soon">
+  
+  <!-- Logo at top -->
+  <div class="hero-content">
+    <img src="https://raw.githubusercontent.com/ibbe-ebbe/jaupics.mv/refs/heads/main/Jau-0.png" alt="Jaupics Logo" class="logo">
   </div>
 
+  <div class="hanger-rail" aria-hidden="true">
+    <div class="rope left"></div>
+    <div class="rope right"></div>
+  </div>
+
+  <div class="board-wrap">
+    <div class="board">
+      <div class="text">OPENING SOON</div>
+    </div>
+  </div>
+
+  <div class="shadow" aria-hidden="true"></div>
+  <div class="tag">Stay tuned for something amazing.</div>
+</div>
+
   <script>
-    // Countdown timer (set your date)
-    const targetDate = new Date("2025-12-31T00:00:00").getTime();
+    // Slight variation: sync rope tilt with board swing for realism
+    const board = document.querySelector('.board');
+    const leftRope = document.querySelector('.rope.left');
+    const rightRope = document.querySelector('.rope.right');
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const diff = targetDate - now;
-      if (diff <= 0) return;
+    // Read computed keyframes by sampling transform via animation frame
+    // We'll approximate rope tilt using board's rotation value derived from a sine function
+    let start = performance.now();
+    function frame(now){
+      const t = ((now - start) / 3800) % 1; // cycle time normalized
+      // approximate same easing as css keyframes
+      const angle = -6 + 11 * Math.sin(t * Math.PI * 2 + 0.2); // -6 to +5 range
+      board.style.transform = `rotate(${angle}deg)`;
+      // ropes tilt opposite slightly to mimic tension
+      leftRope.style.transform = `rotate(${angle * 0.12}deg)`;
+      rightRope.style.transform = `rotate(${angle * 0.12}deg)`;
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+      // subtle shadow scaling relative to angle magnitude
+      const shadow = document.querySelector('.shadow');
+      const scaleX = 1 - Math.abs(angle) / 90; // small change
+      shadow.style.transform = `translateX(${angle * -1.2}px) scaleX(${scaleX})`;
 
-      document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = hours;
-      document.getElementById('minutes').textContent = minutes;
-      document.getElementById('seconds').textContent = seconds;
+      requestAnimationFrame(frame);
     }
+    requestAnimationFrame(frame);
 
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+    // Clicking board toggles pause/play
+    let paused=false;
+    board.addEventListener('click', ()=>{
+      paused = !paused;
+      if(paused){ board.style.animationPlayState = 'paused'; document.querySelector('.shadow').style.animationPlayState='paused'; }
+      else { board.style.animationPlayState = ''; document.querySelector('.shadow').style.animationPlayState=''; }
+      // tiny bounce when unpausing
+      if(!paused){ board.animate([{transform:'rotate(0deg)'},{transform:'rotate(-6deg)'}],{duration:420,easing:'ease-out'}) }
+    });
   </script>
 </body>
 </html>
-
-
-
