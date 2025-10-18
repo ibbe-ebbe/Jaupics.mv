@@ -3,185 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jaupics — Premium Photography</title>
+  <title>Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
-    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
-
-    :root {
-      --bg: #000;
-      --gold: #d4af37;
-      --text: #fff;
-      --muted: #bbb;
-    }
-
-    body {
+    * {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      text-align: center;
-      overflow-x: hidden;
+      padding: 0;
+      box-sizing: border-box;
     }
-
-    /* --- HERO SLIDESHOW --- */
-    .hero {
-      position: relative;
-      height: 90vh;
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #000000, #1a1a1a);
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
       overflow: hidden;
     }
-
-    .hero-slide {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out;
-    }
-
-    .hero-slide.active {
-      opacity: 1;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.55);
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .logo {
-      width: 120px;
-      height: auto;
-      margin-bottom: 20px;
-      border-radius: 50%;
-      border: 2px solid var(--gold);
-      background-color: rgba(0,0,0,0.3);
-      padding: 8px;
-    }
-
-    h1 {
+    .glow {
       font-size: 3em;
-      letter-spacing: 3px;
-      color: var(--gold);
-      margin: 0;
-      text-transform: uppercase;
-    }
-
-    p {
-      color: var(--muted);
-      font-size: 1.2em;
-      margin-top: 10px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--gold);
-      color: #000;
-      padding: 15px 40px;
-      margin-top: 40px;
-      border-radius: 50px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .btn:hover {
-      background: #b58e2a;
-      transform: scale(1.05);
-    }
-
-    .social {
-      margin: 60px 0 40px 0;
-    }
-
-    .social a {
-      margin: 0 15px;
-      color: var(--gold);
-      text-decoration: none;
-      font-size: 1.8em;
-      transition: color 0.3s ease, transform 0.2s ease;
-    }
-
-    .social a:hover {
+      font-weight: 700;
+      letter-spacing: 2px;
       color: #fff;
-      transform: translateY(-3px);
+      text-transform: uppercase;
+      text-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99, 0 0 80px #00ff99;
+      animation: glowPulse 2s ease-in-out infinite;
     }
-
-    footer {
+    @keyframes glowPulse {
+      0%, 100% { text-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99, 0 0 80px #00ff99; }
+      50% { text-shadow: 0 0 5px #00ff99, 0 0 20px #00ff99, 0 0 40px #00ff99; }
+    }
+    p {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #ccc;
+      letter-spacing: 1px;
+    }
+    .countdown {
+      margin-top: 40px;
+      font-size: 1.5em;
+      font-weight: 500;
+      display: flex;
+      gap: 20px;
+    }
+    .countdown div {
+      background: rgba(255, 255, 255, 0.05);
       padding: 20px;
-      font-size: 0.9em;
-      color: var(--muted);
+      border-radius: 10px;
+      backdrop-filter: blur(8px);
+      min-width: 80px;
     }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2em; }
-      .btn { padding: 12px 28px; }
-      .logo { width: 90px; }
+    .countdown span {
+      display: block;
+      font-size: 0.8em;
+      color: #aaa;
+      margin-top: 8px;
+    }
+    @media(max-width: 600px) {
+      .glow { font-size: 2.2em; }
+      .countdown div { min-width: 65px; padding: 15px; }
     }
   </style>
 </head>
 <body>
+  <h1 class="glow">Coming Soon</h1>
+  <p>We’re preparing something amazing for you. Stay tuned!</p>
 
-  <div class="hero">
-    <!-- Background slides -->
-    <div class="hero-slide active" style="background-image: url('https://raw.githubusercontent.com/ibbe-ebbe/jaupics.mv/refs/heads/main/Jau-1.png?auto=format&fit=crop&w=1500&q=80');"></div>
-    <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/ibbe-ebbe/jaupics.mv/refs/heads/main/Jau-2.png?auto=format&fit=crop&w=1500&q=80');"></div>
-    <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/ibbe-ebbe/jaupics.mv/refs/heads/main/Jau-3.png?auto=format&fit=crop&w=1500&q=80');"></div>
-    <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/ibbe-ebbe/jaupics.mv/refs/heads/main/Jau-4.png?auto=format&fit=crop&w=1500&q=80');"></div>
-    <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/ibbe-ebbe/jaupics.mv/refs/heads/main/Jau-5.png?auto=format&fit=crop&w=1500&q=80');"></div>
-
-    <div class="overlay"></div>
-
-    <div class="hero-content">
-      <img src="https://raw.githubusercontent.com/ibbe-ebbe/jaupics.mv/refs/heads/main/Jau-0.png" alt="Jaupics Logo" class="logo">
-      <h1>Jaupics</h1>
-      <p>Premium Photography & Visual Storytelling</p>
-      <a href="viber://chat?number=%2B9607999564" class="btn">Book via Viber</a>
-    </div>
+  <div class="countdown" id="countdown">
+    <div><b id="days">00</b><span>Days</span></div>
+    <div><b id="hours">00</b><span>Hours</span></div>
+    <div><b id="minutes">00</b><span>Minutes</span></div>
+    <div><b id="seconds">00</b><span>Seconds</span></div>
   </div>
 
-  <section>
-    <h2 style="color: var(--gold); margin-top: 50px;">Connect with Us</h2>
-    <div class="social">
-      <a href="https://facebook.com//jaupics.mv" target="_blank"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://instagram.com/jaupics.mv" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://tiktok.com/@jaupicsmv" target="_blank"><i class="fab fa-tiktok"></i></a>
-      <a href="tel:+9607999564"><i class="fas fa-phone"></i></a>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 Jaupics — All Rights Reserved
-  </footer>
-
   <script>
-    // --- Background Slideshow Logic ---
-    const slides = document.querySelectorAll('.hero-slide');
-    let current = 0;
+    // Countdown timer (set your date)
+    const targetDate = new Date("2025-12-31T00:00:00").getTime();
 
-    function showNextSlide() {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      if (diff <= 0) return;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
     }
 
-    setInterval(showNextSlide, 5000); // change image every 5s
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
-
 </body>
 </html>
-
 
 
 
